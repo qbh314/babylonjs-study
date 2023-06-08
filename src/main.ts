@@ -22,27 +22,83 @@ const camera = new BABYLON.ArcRotateCamera(
   'camera', // 相机名称
   0, // 相机的alpha值，水平旋转角度
   0, // 相机的alpha值，垂直旋转角度
-  10, // 相机的半径
+  10, // 相机的直径
   BABYLON.Vector3.Zero(), // 相机的目标点
   scene // 相机的场景
 )
 
+// 设置相机的位置
+camera.setPosition(new BABYLON.Vector3(0, 5, -10))
+
 // 把相机附加到画布上
 camera.attachControl(canvas, true)
-
-// 创建球
-const sphere = BABYLON.MeshBuilder.CreateSphere(
-  'sphere', // 球的名称
-  { diameter: 2 }, // 球的直径
-  scene, // 球所在的场景
-)
 
 // 创建光源
 const light = new BABYLON.DirectionalLight(
   'light', // 光源名称
-  new BABYLON.Vector3(0, -1, 0), // 光源的方向
+  new BABYLON.Vector3(-1, -1, 0), // 光源的方向
   scene, // 光源所在的场景
 )
+
+// 创建球
+// const sphere = BABYLON.MeshBuilder.CreateSphere(
+//   'sphere', // 球的名称
+//   { diameter: 2 }, // 球的直径
+//   scene, // 球所在的场景
+// )
+
+// 创建地面
+// const ground = BABYLON.MeshBuilder.CreateGround(
+//   'ground', // 地面名称
+//   { width: 6, height: 6 }, // 地面的宽高
+//   scene //  地面所在的场景
+// )
+
+// 创建平面
+// const plane = BABYLON.MeshBuilder.CreatePlane(
+//   'plane', // 平面名称
+//   { size: 10 }, // 平面的宽高
+//   scene, // 平面所在的场景
+// )
+
+
+// 创建立方体
+// const box = BABYLON.MeshBuilder.CreateBox(
+//   'box', // 立方体名称
+//   { size: 2 }, // 立方体尺寸
+//   scene // 立方体所在的场景
+// )
+
+// 创建圆柱体
+// const cylinder = BABYLON.MeshBuilder.CreateCylinder(
+//   'cylinder', // 圆柱体名称
+//   { height: 2, diameter: 2 }, // 圆柱体的高和直径
+//   scene // 圆柱体所在的场景
+// )
+
+// 创建圆锥体
+// const cone = BABYLON.MeshBuilder.CreateCylinder(
+//   'cone', // 圆锥体名称
+//   {
+//     height: 2, // 圆锥体的高
+//     diameterTop: 0, // 圆锥体顶部的直径
+//     diameterBottom: 2, // 圆锥体底部的直径
+//     tessellation: 200 // 圆锥体的细分数
+//   },
+//   scene, // 圆锥所在的场景
+// )
+
+// 创建圆环
+const tours = BABYLON.MeshBuilder.CreateTorus(
+  'tours',
+  {
+    diameter: 3, // 圆环的直径
+    thickness: 1, // 圆环的厚度
+    tessellation: 100 // 圆环细分数
+  },
+  scene // 圆环的所在场景
+)
+
 
 // 渲染场景
 engine.runRenderLoop(() => {
