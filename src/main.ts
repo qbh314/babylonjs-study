@@ -48,11 +48,13 @@ const light = new BABYLON.DirectionalLight(
 // )
 
 // 创建地面
-// const ground = BABYLON.MeshBuilder.CreateGround(
-//   'ground', // 地面名称
-//   { width: 6, height: 6 }, // 地面的宽高
-//   scene //  地面所在的场景
-// )
+const ground = BABYLON.MeshBuilder.CreateGround(
+  'ground', // 地面名称
+  { width: 6, height: 6 }, // 地面的宽高
+  scene //  地面所在的场景
+)
+// ground.position.y = -1
+ground.position.set(0, -1, 0)
 
 // 创建平面
 // const plane = BABYLON.MeshBuilder.CreatePlane(
@@ -63,30 +65,43 @@ const light = new BABYLON.DirectionalLight(
 
 
 // 创建立方体
-// const box = BABYLON.MeshBuilder.CreateBox(
-//   'box', // 立方体名称
-//   { size: 2 }, // 立方体尺寸
-//   scene // 立方体所在的场景
-// )
+const box = BABYLON.MeshBuilder.CreateBox(
+  'box', // 立方体名称
+  { size: 2 }, // 立方体尺寸
+  scene // 立方体所在的场景
+)
+box.position.set(4, 0, 0)
+box.scaling.set(0.5, 0.5, 0.5)
+// 旋转立方体45度
+// box.rotation.set(0, Math.PI / 4, 0)
+// 绕着某个点旋转
+box.rotateAround(
+  new BABYLON.Vector3(0, 0, 0), // 旋转的中心点
+  new BABYLON.Vector3(0, 1, 0), // 旋转的轴
+  Math.PI / 4 //旋转的角度
+)
+
 
 // 创建圆柱体
-// const cylinder = BABYLON.MeshBuilder.CreateCylinder(
-//   'cylinder', // 圆柱体名称
-//   { height: 2, diameter: 2 }, // 圆柱体的高和直径
-//   scene // 圆柱体所在的场景
-// )
+const cylinder = BABYLON.MeshBuilder.CreateCylinder(
+  'cylinder', // 圆柱体名称
+  { height: 2, diameter: 2 }, // 圆柱体的高和直径
+  scene // 圆柱体所在的场景
+)
+cylinder.position.set(0, 0, 4)
+cylinder.scaling.set(1, 0.5, 1)
 
 // 创建圆锥体
-// const cone = BABYLON.MeshBuilder.CreateCylinder(
-//   'cone', // 圆锥体名称
-//   {
-//     height: 2, // 圆锥体的高
-//     diameterTop: 0, // 圆锥体顶部的直径
-//     diameterBottom: 2, // 圆锥体底部的直径
-//     tessellation: 200 // 圆锥体的细分数
-//   },
-//   scene, // 圆锥所在的场景
-// )
+const cone = BABYLON.MeshBuilder.CreateCylinder(
+  'cone', // 圆锥体名称
+  {
+    height: 2, // 圆锥体的高
+    diameterTop: 0, // 圆锥体顶部的直径
+    diameterBottom: 2, // 圆锥体底部的直径
+    tessellation: 200 // 圆锥体的细分数
+  },
+  scene, // 圆锥所在的场景
+)
 
 // 创建圆环
 const tours = BABYLON.MeshBuilder.CreateTorus(
@@ -98,7 +113,8 @@ const tours = BABYLON.MeshBuilder.CreateTorus(
   },
   scene // 圆环的所在场景
 )
-
+tours.position.set(-4, -0.5, 0)
+tours.scaling.set(0.5, 0.5, 0.5)
 
 // 渲染场景
 engine.runRenderLoop(() => {
